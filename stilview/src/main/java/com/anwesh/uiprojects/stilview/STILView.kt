@@ -155,4 +155,26 @@ class STILView(ctx : Context) : View(ctx) {
             state.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : STILView) {
+
+        private val animator : Animator = Animator(view)
+        private val stil : STIL = STIL(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            stil.draw(canvas, paint)
+            animator.animate {
+                stil.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            stil.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
