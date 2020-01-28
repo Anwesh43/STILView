@@ -178,4 +178,13 @@ class STILView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : STILView {
+            val view : STILView = STILView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
