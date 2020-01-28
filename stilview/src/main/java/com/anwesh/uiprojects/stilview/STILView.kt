@@ -140,4 +140,19 @@ class STILView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class STIL(var i : Int, val state : State = State()) {
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawSTIL(state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+    }
 }
